@@ -1,8 +1,11 @@
 package com.hmtmcse.datetimeutil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class DateTimeUtil {
 
@@ -19,7 +22,25 @@ public class DateTimeUtil {
         return formatDateTime(pattern, LocalDateTime.now());
     }
 
+    public static Date dateLocalToUTC(Date date) {
+        return dateLocalToUTC(date, "yyyy-MMM-dd HH:mm:ss");
+    }
 
+
+    public static Date dateLocalToUTC(Date date, String pattern) {
+        if (date == null){
+            return null;
+        }
+        SimpleDateFormat dateFormatGmt = new SimpleDateFormat(pattern);
+        dateFormatGmt.setTimeZone(TimeZone.getTimeZone("UTC"));
+        SimpleDateFormat dateFormatLocal = new SimpleDateFormat(pattern);
+        try {
+            date = dateFormatLocal.parse( dateFormatGmt.format(date));
+        } catch (ParseException e) {
+            return null;
+        }
+        return date;
+    }
 
     public static LocalDateTime toZone(final LocalDateTime time, final ZoneId fromZone, final ZoneId toZone) {
         final ZonedDateTime zonedDateTime = time.atZone(fromZone);
