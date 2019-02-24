@@ -1,11 +1,11 @@
 package com.hmtmcse.datetimeutil;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class DateTimeUtil {
 
@@ -22,13 +22,14 @@ public class DateTimeUtil {
         return formatDateTime(pattern, LocalDateTime.now());
     }
 
-    public static Date dateToUtcDate(Date date) {
-        if (date == null){
-            return null;
-        }
-        Instant instant = Instant.ofEpochMilli(date.getTime());
-        return localDateTimeToDate(LocalDateTime.ofInstant(instant, ZoneOffset.UTC), ZoneOffset.UTC);
+
+
+    public static LocalDateTime toZone(final LocalDateTime time, final ZoneId fromZone, final ZoneId toZone) {
+        final ZonedDateTime zonedDateTime = time.atZone(fromZone);
+        final ZonedDateTime converted = zonedDateTime.withZoneSameInstant(toZone);
+        return converted.toLocalDateTime();
     }
+
 
 
     public static LocalDateTime dateToLocalDateTime(Date date, ZoneId zoneId) {
