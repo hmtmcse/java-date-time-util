@@ -1,2 +1,2 @@
-# java-date-time-util
+# Java Date Time Util
 Java Date Time Utility
