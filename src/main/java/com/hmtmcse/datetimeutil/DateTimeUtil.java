@@ -22,10 +22,35 @@ public class DateTimeUtil {
         return formatDateTime(pattern, LocalDateTime.now());
     }
 
+    public static String oldDateParser(Date date, String pattern){
+        return oldDateParser(date, pattern, TimeZone.getDefault());
+    }
+
+
+    public static String oldDateParser(Date date, String pattern, TimeZone zone){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        simpleDateFormat.setTimeZone(zone);
+        return simpleDateFormat.format(date);
+    }
+
+    public static Date oldDateFormatter(String date, String pattern){
+        return oldDateFormatter(date, pattern, TimeZone.getDefault());
+    }
+
+    public static Date oldDateFormatter(String date, String pattern, TimeZone zone){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        simpleDateFormat.setTimeZone(zone);
+        Date dateObject = null;
+        try {
+            dateObject = simpleDateFormat.parse(date);
+        } catch (ParseException e) {}
+        return dateObject;
+    }
+
+
     public static Date dateLocalToUTC(Date date) {
         return dateLocalToUTC(date, "yyyy-MMM-dd HH:mm:ss");
     }
-
 
     public static Date dateLocalToUTC(Date date, String pattern) {
         if (date == null){
