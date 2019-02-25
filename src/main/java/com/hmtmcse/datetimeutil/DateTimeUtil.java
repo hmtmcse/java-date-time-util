@@ -22,22 +22,22 @@ public class DateTimeUtil {
         return formatDateTime(pattern, LocalDateTime.now());
     }
 
-    public static String oldDateParser(Date date, String pattern){
-        return oldDateParser(date, pattern, TimeZone.getDefault());
+    public static String oldDateFormatter(Date date, String pattern){
+        return oldDateFormatter(date, pattern, TimeZone.getDefault());
     }
 
 
-    public static String oldDateParser(Date date, String pattern, TimeZone zone){
+    public static String oldDateFormatter(Date date, String pattern, TimeZone zone){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         simpleDateFormat.setTimeZone(zone);
         return simpleDateFormat.format(date);
     }
 
-    public static Date oldDateFormatter(String date, String pattern){
-        return oldDateFormatter(date, pattern, TimeZone.getDefault());
+    public static Date oldDateParser(String date, String pattern){
+        return oldDateParser(date, pattern, TimeZone.getDefault());
     }
 
-    public static Date oldDateFormatter(String date, String pattern, TimeZone zone){
+    public static Date oldDateParser(String date, String pattern, TimeZone zone){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         simpleDateFormat.setTimeZone(zone);
         Date dateObject = null;

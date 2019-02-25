@@ -15,31 +15,35 @@ public class DateSpanData {
         return startDateTime;
     }
 
-    public void setStartDateTime(Date startDateTime) {
+    public DateSpanData setStartDateTime(Date startDateTime) {
         this.startDateTime = startDateTime;
+        return this;
     }
 
     public Date getEndDateTime() {
         return endDateTime;
     }
 
-    public void setEndDateTime(Date endDateTime) {
+    public DateSpanData setEndDateTime(Date endDateTime) {
         this.endDateTime = endDateTime;
+        return this;
     }
 
     public LocalDateTime getStartLocalDateTime() {
         return startLocalDateTime;
     }
 
-    public void setStartLocalDateTime(LocalDateTime startLocalDateTime) {
+    public DateSpanData setStartLocalDateTime(LocalDateTime startLocalDateTime) {
         this.startLocalDateTime = startLocalDateTime;
+        return this;
     }
 
     public LocalDateTime getEndLocalDateTime() {
         return endLocalDateTime;
     }
 
-    public void setEndLocalDateTime(LocalDateTime endLocalDateTime) {
+    public DateSpanData setEndLocalDateTime(LocalDateTime endLocalDateTime) {
         this.endLocalDateTime = endLocalDateTime;
+        return this;
     }
 }
