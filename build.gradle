@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.hmtmcse'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 sourceCompatibility = 1.8
 
@@ -11,6 +11,63 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+
+bintray {
+    user = project.property('bintrayUser')
+    key = project.property('bintrayApiKey')
+    publish = true
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = 'com.hmtmcse.datetimeutil'
+        vcsUrl = 'https://github.com/hmtmcse/java-date-time-util.git'
+        licenses = ['The Apache License, Version 2.0']
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'datetimeutil'
+            groupId = 'com.hmtmcse'
+            from components.java
+            artifact sourcesJar
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Crypto and Auth'
+                description = 'This Library Provide Help like Date Time Util.'
+                url = 'https://hmtmcse.github.io/java-date-time-util'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'hmtmcse'
+                        name = 'H.M Touhid Mia'
+                        email = 'hmtm.cse@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/hmtmcse/java-date-time-util.git'
+                    developerConnection = 'scm:git:https://github.com/hmtmcse/java-date-time-util.git'
+                    url = 'https://github.com/hmtmcse/java-date-time-util'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
