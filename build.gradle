@@ -11,5 +11,14 @@ repositories {
     mavenCentral()
 }
 
+def dependencyList = []
 
+
+dependencies {
+    dependencyList.each {
+        if (findProject(":" + it)){
+            compile project(":" + it)
+        }
+    }
+}
 
